@@ -11,6 +11,11 @@ import (
 func TestSequence(tt *testing.T) {
 	t := New(tt)
 
+	t.Run("Empty", func(t Test) {
+		t.Expect(sgr.Sequence{}.Bytes()).ToEqual([]byte{})
+		t.Expect(sgr.Sequence{}.Render(nil)).ToEqual([]byte(nil))
+	})
+
 	t.Run("Basic/Basic/Italic", func(t Test) {
 		t.Expect(
 			string(sgr.Sequence{
