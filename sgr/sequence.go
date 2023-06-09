@@ -10,6 +10,10 @@ type Sequence []Command
 
 // Render produces binary string corresponding to the contained commands starting with "\x1b[" (ESC/CSI) and ending with 'm'.
 func (s Sequence) Render(buf []byte) []byte {
+	if len(s) == 0 {
+		return buf
+	}
+
 	buf = append(buf, seqBegin...)
 	l := len(buf)
 	for i := range s {
