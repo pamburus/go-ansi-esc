@@ -1,2 +1,4 @@
 github.com/pamburus/go-tst v0.1.0 h1:RqNTg+34Fjvi7+l3NgXMmzLKYFaKrBskfKxHZvDD2Lg=
 github.com/pamburus/go-tst v0.1.0/go.mod h1:Jbmc83QXCwwfX4E2HhZ8n7tVM8tHbs6RhIl1CdayMls=
+github.com/veggiemonk/strcase v0.0.0-20230613122707-49905e811ba0 h1:ne//KUiQxD3CUCs/jp+mEHtfRAsEdSkP8j7Rg+Z2nUw=
+github.com/veggiemonk/strcase v0.0.0-20230613122707-49905e811ba0/go.mod h1:FhMPOXYKshhGzQYJHiD5+zsWaVMP2NGpi/HfPu14QPA=
