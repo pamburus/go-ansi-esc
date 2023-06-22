@@ -3,8 +3,9 @@ package sgr_test
 import (
 	"testing"
 
-	"github.com/pamburus/go-ansi-esc/sgr"
 	. "github.com/pamburus/go-tst/tst"
+
+	"github.com/pamburus/go-ansi-esc/sgr"
 )
 
 func TestMode(tt *testing.T) {

@@ -4,8 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/pamburus/go-ansi-esc/sgr"
 	. "github.com/pamburus/go-tst/tst"
+
+	"github.com/pamburus/go-ansi-esc/sgr"
 )
 
 func TestError(tt *testing.T) {
