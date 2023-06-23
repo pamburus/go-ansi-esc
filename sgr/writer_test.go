@@ -8,8 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pamburus/go-ansi-esc/sgr"
 	. "github.com/pamburus/go-tst/tst"
+
+	"github.com/pamburus/go-ansi-esc/sgr"
 )
 
 func TestWriter(tt *testing.T) {

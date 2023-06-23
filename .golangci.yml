@@ -12,7 +12,7 @@ linters-settings:
   gocyclo:
     min-complexity: 32
   goimports:
-    local-prefixes: git.acronis.com
+    local-prefixes: github.com/pamburus/go-ansi-esc
   govet:
     check-shadowing: false
   lll:
@@ -61,25 +61,3 @@ linters:
 issues:
   # Disable this option because it causes golint to hide almost all issues
   exclude-use-default: false
-  # Excluding configuration per-path, per-linter, per-text and per-source
-  exclude-rules:
-    - path: _test\.go
-      linters:
-        - dupl
-        - gosec
-        - unparam
-        - nlreturn
-    - text: ^G302|^G304|^G601
-      linters:
-        - gosec
-    - text: ^ST1000
-      linters:
-        - stylecheck
-    - text: ^singleCaseSwitch|^regexpMust
-      linters:
-        - gocritic
-
-# golangci.com configuration
-# https://github.com/golangci/golangci/wiki/Configuration
-service:
-  golangci-lint-version: 1.48.x # use the fixed version to not introduce new linters unexpectedly

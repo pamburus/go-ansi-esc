@@ -3,12 +3,18 @@ package sgr_test
 import (
 	"testing"
 
-	"github.com/pamburus/go-ansi-esc/sgr"
 	. "github.com/pamburus/go-tst/tst"
+
+	"github.com/pamburus/go-ansi-esc/sgr"
 )
 
 func TestSequence(tt *testing.T) {
 	t := New(tt)
+
+	t.Run("Empty", func(t Test) {
+		t.Expect(sgr.Sequence{}.Bytes()).ToEqual([]byte{})
+		t.Expect(sgr.Sequence{}.Render(nil)).ToEqual([]byte(nil))
+	})
 
 	t.Run("Basic/Basic/Italic", func(t Test) {
 		t.Expect(

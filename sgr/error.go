@@ -212,3 +212,45 @@ func (e ErrInvalidRGBColorText) Is(err error) bool {
 
 	return false
 }
+
+// ---
+
+// ErrInvalidModeValue is an error that occurs in case explicit validation or marshaling discovers an invalid value.
+type ErrInvalidModeValue struct {
+	Value Mode
+}
+
+// Error returns the error message.
+func (e ErrInvalidModeValue) Error() string {
+	return fmt.Sprintf("invalid mode value %d", e.Value)
+}
+
+// Is returns true if e is a sub-class of err.
+func (e ErrInvalidModeValue) Is(err error) bool {
+	if other, ok := err.(ErrInvalidModeValue); ok {
+		return other.Value == 0 || other.Value == e.Value
+	}
+
+	return false
+}
+
+// ---
+
+// ErrInvalidModeText is an error that occurs in case of parsing an invalid textual representation of Mode.
+type ErrInvalidModeText struct {
+	Value string
+}
+
+// Error returns the error message.
+func (e ErrInvalidModeText) Error() string {
+	return fmt.Sprintf("invalid mode text %q", e.Value)
+}
+
+// Is returns true if e is a sub-class of err.
+func (e ErrInvalidModeText) Is(err error) bool {
+	if other, ok := err.(ErrInvalidModeText); ok {
+		return other.Value == "" || other.Value == e.Value
+	}
+
+	return false
+}
