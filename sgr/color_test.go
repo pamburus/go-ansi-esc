@@ -175,7 +175,7 @@ func TestColor(tt *testing.T) {
 		t.Run("MarshalText", func(t Test) {
 			t.Run("Valid", func(t Test) {
 				text, err := sgr.BrightGreen.MarshalText()
-				t.Expect(err).To(HaveNotOccurred())
+				t.Expect(err).ToNot(HaveOccurred())
 				t.Expect(text).ToEqual([]byte("BrightGreen"))
 			})
 			t.Run("Invalid", func(t Test) {
@@ -236,7 +236,7 @@ func TestColor(tt *testing.T) {
 		t.Run("MarshalText", func(t Test) {
 			t.Run("Valid", func(t Test) {
 				text, err := sgr.Normal.MarshalText()
-				t.Expect(err).To(HaveNotOccurred())
+				t.Expect(err).ToNot(HaveOccurred())
 				t.Expect(text).ToEqual([]byte("Normal"))
 			})
 			t.Run("Invalid", func(t Test) {
@@ -277,7 +277,7 @@ func TestColor(tt *testing.T) {
 
 		t.Run("MarshalText", func(t Test) {
 			text, err := sgr.Default.MarshalText()
-			t.Expect(err).To(HaveNotOccurred())
+			t.Expect(err).ToNot(HaveOccurred())
 			t.Expect(text).ToEqual([]byte("Default"))
 		})
 
@@ -314,7 +314,7 @@ func TestColor(tt *testing.T) {
 
 		t.Run("MarshalText", func(t Test) {
 			text, err := sgr.PaletteColor(48).MarshalText()
-			t.Expect(err).To(HaveNotOccurred())
+			t.Expect(err).ToNot(HaveOccurred())
 			t.Expect(text).ToEqual([]byte("#30"))
 		})
 
@@ -355,7 +355,7 @@ func TestColor(tt *testing.T) {
 
 		t.Run("MarshalText", func(t Test) {
 			text, err := sgr.RGB(16, 32, 48).MarshalText()
-			t.Expect(err).To(HaveNotOccurred())
+			t.Expect(err).ToNot(HaveOccurred())
 			t.Expect(text).ToEqual([]byte("#102030"))
 		})
 
