@@ -36,7 +36,7 @@ func TestWriter(tt *testing.T) {
 
 		buf := bytes.NewBuffer(nil)
 		err := rec.Write(buf)
-		t.Expect(err).To(HaveNotOccurred())
+		t.Expect(err).ToNot(HaveOccurred())
 		t.Expect(buf.String()).ToEqual(
 			"\x1b[90m2023-06-01T12:00:00Z\x1b[0m |\x1b[36mINF\x1b[0m| \x1b[90mtst:\x1b[0m \x1b[97mhello\x1b[0m \x1b[48;2;10;10;30;92;4mf1\x1b[90;24m:\x1b[96mv1\x1b[0m \x1b[48;2;10;10;30;92;4mf2\x1b[90;24m:\x1b[94m10\x1b[0m \x1b[48;2;10;10;30;92;4mf3\x1b[90;24m:\x1b[91mtrue\x1b[0m \x1b[48;2;10;10;30;92;4mf4\x1b[90;24m:{ \x1b[92;4mf5\x1b[90;24m:\x1b[96mv5\x1b[39m \x1b[92;4mf6\x1b[90;24m:\x1b[94m20\x1b[39m \x1b[92;4mf7\x1b[90;24m:\x1b[91mfalse\x1b[90m }\x1b[0m\n",
 		)
