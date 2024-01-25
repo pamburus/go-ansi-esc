@@ -9,5 +9,5 @@ A repository dedicated for packages that can be useful for dealing with ANSI Esc
 [doc]: https://pkg.go.dev/github.com/pamburus/go-ansi-esc
 [ci-img]: https://github.com/pamburus/go-ansi-esc/actions/workflows/ci.yml/badge.svg
 [ci]: https://github.com/pamburus/go-ansi-esc/actions/workflows/ci.yml
-[cov-img]: https://codecov.io/gh/pamburus/go-ansi-esc/branch/main/graph/badge.svg
+[cov-img]: https://codecov.io/gh/pamburus/go-ansi-esc/graph/badge.svg?token=RH09Z45ZEM
 [cov]: https://codecov.io/gh/pamburus/go-ansi-esc
