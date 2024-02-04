@@ -104,4 +104,6 @@ func TestMode(tt *testing.T) {
 	t.Expect(set.Diff(other).Added()).ToEqual(sgr.Subscript.ModeSet())
 	t.Expect(set.Diff(other).Removed()).ToEqual(sgr.Overlined.ModeSet())
 	t.Expect(set.Diff(other).Changed()).ToEqual(sgr.Overlined.ModeSet().With(sgr.Subscript))
+
+	t.Expect(set.Diff(set).ToCommands(nil)).ToEqual(sgr.Sequence(nil))
 }
