@@ -250,6 +250,9 @@ func (d ModeSetDiff) Reversed() ModeSetDiff {
 // ToCommands appends commands needed to bring old mode set to new mode set to seq and returns modified seq.
 func (d ModeSetDiff) ToCommands(seq Sequence) Sequence {
 	changed := d.Old ^ d.New
+	if changed == 0 {
+		return seq
+	}
 
 	for _, row := range modeSyncTableSingle {
 		mask := row.mode.ModeSet()
