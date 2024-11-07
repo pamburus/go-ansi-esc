@@ -106,4 +106,30 @@ func TestMode(tt *testing.T) {
 	t.Expect(set.Diff(other).Changed()).ToEqual(sgr.Overlined.ModeSet().With(sgr.Subscript))
 
 	t.Expect(set.Diff(set).ToCommands(nil)).ToEqual(sgr.Sequence(nil))
+
+	allModes := 0 |
+		sgr.Bold.ModeSet() |
+		sgr.Faint.ModeSet() |
+		sgr.Italic.ModeSet() |
+		sgr.SlowBlink.ModeSet() |
+		sgr.RapidBlink.ModeSet() |
+		sgr.Reversed.ModeSet() |
+		sgr.Concealed.ModeSet() |
+		sgr.CrossedOut.ModeSet() |
+		sgr.Underlined.ModeSet() |
+		sgr.DoublyUnderlined.ModeSet() |
+		sgr.Framed.ModeSet() |
+		sgr.Encircled.ModeSet() |
+		sgr.Overlined.ModeSet() |
+		sgr.Superscript.ModeSet() |
+		sgr.Subscript.ModeSet()
+
+	t.Expect(sgr.AllModes()).ToEqual(allModes)
+
+	t.Run("Conflicts", func(t Test) {
+		t.Expect(sgr.NewModeSet().Conflicts()).ToEqual(sgr.EmptyModeSet())
+		t.Expect(sgr.Bold.ModeSet().Conflicts()).ToEqual(sgr.Faint.ModeSet())
+		t.Expect(sgr.Bold.ModeSet().With(sgr.Faint).Conflicts()).ToEqual(sgr.EmptyModeSet())
+		t.Expect(sgr.Faint.ModeSet().Conflicts()).ToEqual(sgr.Bold.ModeSet())
+	})
 }

@@ -26,6 +26,7 @@ const (
 	Overlined
 	Superscript
 	Subscript
+	numModes
 )
 
 // ---
@@ -115,6 +116,11 @@ func ModeSetWith(modes ...Mode) ModeSet {
 	return ModeList(modes).ModeSet()
 }
 
+// AllModes constructs a new ModeSet with all Mode values.
+func AllModes() ModeSet {
+	return ModeSet(1<<numModes) - 1
+}
+
 // ---
 
 // ModeSet is a bit mask containing values for all Mode values.
@@ -181,6 +187,24 @@ func (s ModeSet) ModeList() ModeList {
 		if s&(1<<i) != 0 {
 			result = append(result, Mode(i))
 		}
+	}
+
+	return result
+}
+
+// Conflicts returns a set of modes conflicting with modes in s.
+// Modes conflicting with mode M are those that cannot be left unaffected
+// when applying a command to reset mode M.
+// That may be important when preparing pre-rendered commands.
+func (s ModeSet) Conflicts() ModeSet {
+	result := EmptyModeSet()
+	for _, row := range modeSyncTableDual {
+		mask := row.mask
+		if s&mask == 0 || s&mask == mask {
+			continue
+		}
+
+		result |= mask ^ (s & mask)
 	}
 
 	return result
