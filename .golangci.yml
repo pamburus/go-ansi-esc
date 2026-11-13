@@ -1,41 +1,14 @@
-linters-settings:
-  dupl:
-    threshold: 150
-  exhaustive:
-    default-signifies-exhaustive: false
-  funlen:
-    lines: 100
-    statements: 50
-  goconst:
-    min-len: 2
-    min-occurrences: 2
-  gocyclo:
-    min-complexity: 32
-  goimports:
-    local-prefixes: github.com/pamburus
-  lll:
-    line-length: 140
-  nolintlint:
-    allow-unused: false # report any unused nolint directives
-    require-explanation: true # require an explanation for nolint directives
-    require-specific: false # don't require nolint directives to be specific about which linter is being skipped
-
+version: "2"
 linters:
-  # please, do not use `enable-all`: it's deprecated and will be removed soon.
-  # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint
-  disable-all: true
+  default: none
   enable:
     - asciicheck
     - dupl
     - errcheck
-    - exportloopref
     - gocritic
     - gocyclo
     - godot
-    - gofmt
-    - goimports
     - gosec
-    - gosimple
     - govet
     - ineffassign
     - misspell
@@ -44,22 +17,54 @@ linters:
     - prealloc
     - revive
     - staticcheck
-    - stylecheck
-    - typecheck
     - unconvert
     - unparam
     - unused
     - whitespace
-
-issues:
-  # Disable this option because it causes golint to hide almost all issues
-  exclude-use-default: false
-  # Excluding configuration per-path, per-linter, per-text and per-source.
-  exclude-rules:
-    # The dot-imports linter is disabled for the test files because it is convenient to dot-import third-party testing frameworks.
-    - linters: [revive]
-      text: '^dot-imports: '
-      path: '(.+)_test.go'
-    # Check gosec/G115 is disabled due to integer conversion overflow false positives.
-    - linters: [gosec]
-      text: '^G115: '
+  settings:
+    dupl:
+      threshold: 150
+    exhaustive:
+      default-signifies-exhaustive: false
+    funlen:
+      lines: 100
+      statements: 50
+    goconst:
+      min-len: 2
+      min-occurrences: 2
+    gocyclo:
+      min-complexity: 32
+    lll:
+      line-length: 140
+    nolintlint:
+      require-explanation: true
+      require-specific: false
+      allow-unused: false
+  exclusions:
+    generated: lax
+    rules:
+      - linters:
+          - revive
+        path: (.+)_test.go
+        text: '^dot-imports: '
+      - linters:
+          - gosec
+        text: '^G115: '
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/pamburus
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
